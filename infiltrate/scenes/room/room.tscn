@@ -1,0 +1,118 @@
+[gd_scene load_steps=12 format=3 uid="uid://c1tbwphbnygw3"]
+
+[ext_resource type="Script" uid="uid://deq1jwdfr0f8v" path="res://scenes/room/room.gd" id="1_8xru0"]
+[ext_resource type="Script" uid="uid://da83jq1t86j8q" path="res://scenes/room/enemy_spawner.gd" id="2_kxljb"]
+[ext_resource type="PackedScene" uid="uid://bg384254x4nmc" path="res://enemy.tscn" id="3_y1kpu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v321d"]
+albedo_color = Color(0.25747585, 0.25747573, 0.25747573, 1)
+metallic_specular = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_88gup"]
+material = SubResource("StandardMaterial3D_v321d")
+size = Vector3(10, 2, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_88gup"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_v321d"]
+material = SubResource("StandardMaterial3D_88gup")
+size = Vector3(10, 12, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bisa2"]
+albedo_color = Color(0.25747585, 0.25747573, 0.25747573, 1)
+metallic = 1.0
+metallic_specular = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_bisa2"]
+material = SubResource("StandardMaterial3D_bisa2")
+size = Vector3(10, 4, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4o3f6"]
+material = SubResource("StandardMaterial3D_bisa2")
+size = Vector3(2, 4, 1)
+
+[sub_resource type="Curve3D" id="Curve3D_8xru0"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -5, 2, 0, 0, 0, 0, 0, 0, 0, 5, 2, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[node name="Room" type="Node3D"]
+script = ExtResource("1_8xru0")
+enemy_chance = 1.0
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+mesh = SubResource("BoxMesh_88gup")
+
+[node name="BackWall" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+
+[node name="Windows" type="Node3D" parent="BackWall"]
+
+[node name="Background" type="MeshInstance3D" parent="BackWall/Windows"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -2)
+mesh = SubResource("BoxMesh_v321d")
+
+[node name="Light1" type="OmniLight3D" parent="BackWall/Windows"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 6, -0.5)
+light_energy = 16.0
+light_indirect_energy = 0.0
+light_specular = 0.0
+shadow_enabled = true
+omni_range = 14.0
+
+[node name="Light2" type="OmniLight3D" parent="BackWall/Windows"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 6, -0.5)
+light_energy = 16.0
+light_indirect_energy = 0.0
+light_specular = 0.0
+shadow_enabled = true
+omni_range = 14.0
+
+[node name="Base" type="MeshInstance3D" parent="BackWall"]
+mesh = SubResource("BoxMesh_bisa2")
+skeleton = NodePath("../..")
+
+[node name="Mid1" type="MeshInstance3D" parent="BackWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, 0)
+mesh = SubResource("BoxMesh_4o3f6")
+skeleton = NodePath("../..")
+
+[node name="Mid2" type="MeshInstance3D" parent="BackWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+mesh = SubResource("BoxMesh_4o3f6")
+skeleton = NodePath("../..")
+
+[node name="Mid3" type="MeshInstance3D" parent="BackWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, 0)
+mesh = SubResource("BoxMesh_4o3f6")
+skeleton = NodePath("../..")
+
+[node name="Top" type="MeshInstance3D" parent="BackWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+layers = 2
+mesh = SubResource("BoxMesh_bisa2")
+skeleton = NodePath("../..")
+
+[node name="LeftSide" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
+aabb = AABB(-1, 0, -2.5, 2, 10, 5)
+
+[node name="RightSide" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+aabb = AABB(-1, 0, -2.5, 2, 10, 5)
+
+[node name="EnemySpawner" type="Path3D" parent="."]
+curve = SubResource("Curve3D_8xru0")
+script = ExtResource("2_kxljb")
+enemy_scene = ExtResource("3_y1kpu")
+
+[node name="EnemySpawnPoint" type="PathFollow3D" parent="EnemySpawner"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5, 2, 0)
+
+[connection signal="screen_entered" from="LeftSide" to="." method="_on_left_side_screen_entered"]
+[connection signal="screen_entered" from="RightSide" to="." method="_on_right_side_screen_entered"]

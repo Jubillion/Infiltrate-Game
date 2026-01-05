@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwcronurghedr"]
+
+[ext_resource type="Script" uid="uid://dedrajdv8m1py" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://c1tbwphbnygw3" path="res://scenes/room/room.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://0pg7hnwun3w5" path="res://scenes/player/player.tscn" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://ddsuvtnkmeksf" path="res://scripts/camera_target.gd" id="4_1bvp3"]
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_0xm2m")
+
+[node name="Room" parent="." instance=ExtResource("1_ig7tw")]
+safe_radius = 3
+
+[node name="Player" parent="." instance=ExtResource("3_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="CameraTarget" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+script = ExtResource("4_1bvp3")
+
+[node name="Camera3D" type="Camera3D" parent="CameraTarget"]
+transform = Transform3D(1, 0, 0, 0, 0.90839875, 0.4181049, 0, -0.4181049, 0.90839875, 0, 3.6864014, 1)
+projection = 1
+size = 9.622147

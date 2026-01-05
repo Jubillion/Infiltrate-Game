@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://0pg7hnwun3w5"]
+
+[ext_resource type="Script" uid="uid://cp7ssckkj0bei" path="res://scenes/player/player.gd" id="1_8afob"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8afob"]
+size = Vector3(1.5, 4, 1.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8afob"]
+albedo_color = Color(0.22000003, 0.9349999, 1, 1)
+metallic_specular = 1.0
+emission_enabled = true
+emission = Color(0.21960784, 0.93333334, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_8afob"]
+material = SubResource("StandardMaterial3D_8afob")
+radius = 1.0
+height = 4.0
+
+[node name="Player" type="CharacterBody3D"]
+collision_mask = 4
+script = ExtResource("1_8afob")
+
+[node name="PlayerHitbox" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_8afob")
+
+[node name="Character" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_8afob")
