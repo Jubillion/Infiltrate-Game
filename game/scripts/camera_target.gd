@@ -8,10 +8,10 @@ var t = 0.0
 func _physics_process(delta: float) -> void:
 	var player = $"../Player"
 	var distance_ahead = look_ahead * player.velocity.normalized()
-	var future_position = player.position + distance_ahead
+	var future_pos = player.position + distance_ahead
 	if player.velocity == Vector3.ZERO:
 		t = 0.1
 	t += delta / goal_time
 	t = min(t, 0.1)
-	position = lerp(position, future_position, t)
+	position = lerp(position, future_pos, t)
 	 

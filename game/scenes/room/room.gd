@@ -1,7 +1,7 @@
 extends Node3D
 
-@export var safe_radius: int = 0
-@export_range(0.0, 1.0, 0.01) var enemy_chance: float = 0.5
+@export var safe_radius := 0
+@export_range(0.0, 1.0, 0.01) var enemy_chance := 0.5
 
 var current_scene = load("res://scenes/room/room.tscn") as PackedScene
 

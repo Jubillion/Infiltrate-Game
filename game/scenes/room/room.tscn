@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://deq1jwdfr0f8v" path="res://scenes/room/room.gd" id="1_8xru0"]
 [ext_resource type="Script" uid="uid://da83jq1t86j8q" path="res://scenes/room/enemy_spawner.gd" id="2_kxljb"]
-[ext_resource type="PackedScene" uid="uid://bg384254x4nmc" path="res://enemy.tscn" id="3_y1kpu"]
+[ext_resource type="PackedScene" uid="uid://bg384254x4nmc" path="res://scenes/enemy/enemy.tscn" id="3_y1kpu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v321d"]
 albedo_color = Color(0.25747585, 0.25747573, 0.25747573, 1)

@@ -8,5 +8,5 @@ func _ready():
 	if not is_safe and enemy_chance > randf():
 		var enemy = enemy_scene.instantiate()
 		$EnemySpawnPoint.progress_ratio = randf()
-		enemy.position = $EnemySpawnPoint.position
-		add_child(enemy)
+		enemy.position = $EnemySpawnPoint.position + $"..".position
+		$"../..".call_deferred("add_child", enemy)
