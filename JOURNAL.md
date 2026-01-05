@@ -16,4 +16,4 @@ I created a general plan for the game, created the project, and followed every s
 
 I finished the last tutorial and then began my game. I implemented some basic map generation, player movement, and enemy spawning. I plan on keeping the half-finished look of the game for the most part. It's easier to use and looks pretty good anyway.
 
-I also figured out how to export it to the web, which is viewable [as a static webpage](https://Jubillion.github.io/Infiltrate-Game/jan-4/).
+I also figured out how to export it to the web, which is viewable [as a static webpage](https://Jubillion.github.io/Infiltrate-Game/jan_4/).
