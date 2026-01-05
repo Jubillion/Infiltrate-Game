@@ -30,12 +30,6 @@ shape = SubResource("BoxShape3D_8afob")
 [node name="Character" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_8afob")
 
-[node name="WeaponArea" type="Area3D" parent="."]
-
-[node name="WeaponHitbox" type="CollisionShape3D" parent="WeaponArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.25)
-shape = SubResource("BoxShape3D_lvxji")
-
 [node name="WeaponPivot" type="Marker3D" parent="."]
 script = ExtResource("2_dovo2")
 
@@ -43,3 +37,9 @@ script = ExtResource("2_dovo2")
 transform = Transform3D(-1.3668119e-08, 0.9, 1.0728833e-07, -0.26547688, -1.065463e-07, 0.85995466, 0.85995466, -1.858732e-08, 0.26547688, 1.2268162, -0.07361555, -1.5428736)
 layers = 2
 mesh = ExtResource("3_gmlin")
+
+[node name="WeaponArea" type="Area3D" parent="WeaponPivot"]
+
+[node name="WeaponHitbox" type="CollisionShape3D" parent="WeaponPivot/WeaponArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.25)
+shape = SubResource("BoxShape3D_lvxji")
