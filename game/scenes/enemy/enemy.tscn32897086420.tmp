@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://bg384254x4nmc"]
+
+[ext_resource type="Script" uid="uid://175ftorw50en" path="res://scenes/enemy/enemy.gd" id="1_7k104"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7xaro"]
+size = Vector3(2, 4, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7xaro"]
+albedo_color = Color(1, 0.27999997, 0.27999997, 1)
+emission_enabled = true
+emission = Color(1, 0.08333331, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_7xaro"]
+material = SubResource("StandardMaterial3D_7xaro")
+radius = 1.0
+height = 4.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4a83h"]
+material = SubResource("StandardMaterial3D_7xaro")
+radius = 0.25
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a3pup"]
+size = Vector3(2, 2, 0.5)
+
+[node name="Enemy" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 7
+script = ExtResource("1_7k104")
+
+[node name="EnemyHitbox" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_7xaro")
+
+[node name="Character" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_7xaro")
+
+[node name="ArmPivot" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.5, -0.8660253, 0, 0.8660253, -0.5, 0, 0.21712679, -0.413347)
+
+[node name="LeftArm" type="MeshInstance3D" parent="ArmPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.75, 0)
+mesh = SubResource("CapsuleMesh_4a83h")
+skeleton = NodePath("../..")
+
+[node name="RightArm" type="MeshInstance3D" parent="ArmPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.75, 0)
+mesh = SubResource("CapsuleMesh_4a83h")
+skeleton = NodePath("../..")
+
+[node name="AttackArea" type="Area3D" parent="ArmPivot"]
+collision_layer = 8
+
+[node name="AttackHurtbox" type="CollisionShape3D" parent="ArmPivot/AttackArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
+shape = SubResource("BoxShape3D_a3pup")
+
+[node name="AttackWarmup" type="Timer" parent="."]
+
+[connection signal="body_entered" from="ArmPivot/AttackArea" to="." method="_on_attack_area_body_entered"]
