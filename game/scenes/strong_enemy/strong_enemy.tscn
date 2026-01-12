@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=3 uid="uid://bqo5v0b5fxtk7"]
+
+[ext_resource type="PackedScene" uid="uid://bg384254x4nmc" path="res://scenes/enemy/enemy.tscn" id="1_4tjvk"]
+[ext_resource type="Material" uid="uid://clmjn2mbb6mih" path="res://scenes/enemy/enemy.tres" id="2_vp44p"]
+[ext_resource type="Texture2D" uid="uid://4gyvsofwvjd5" path="res://assets/3d_models/dominus_set/DominusInfernus.png" id="3_any22"]
+[ext_resource type="ArrayMesh" uid="uid://coe5nkrn70s3" path="res://assets/3d_models/dominus_set/dominusempyreus.obj" id="4_ldw7i"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_bh8ia"]
+material = ExtResource("2_vp44p")
+radius = 1.0
+height = 3.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u4vao"]
+albedo_texture = ExtResource("3_any22")
+
+[node name="StrongEnemy" instance=ExtResource("1_4tjvk")]
+damage = 10
+
+[node name="Character" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = SubResource("CapsuleMesh_bh8ia")
+
+[node name="Hood" type="MeshInstance3D" parent="Character" index="0"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0.14569807, -0.8)
+material_override = SubResource("StandardMaterial3D_u4vao")
+mesh = ExtResource("4_ldw7i")
+skeleton = NodePath("../..")

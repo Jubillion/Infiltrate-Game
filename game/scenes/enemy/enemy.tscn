@@ -1,22 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://bg384254x4nmc"]
+[gd_scene load_steps=8 format=3 uid="uid://bg384254x4nmc"]
 
 [ext_resource type="Script" uid="uid://175ftorw50en" path="res://scenes/enemy/enemy.gd" id="1_7k104"]
+[ext_resource type="Material" uid="uid://clmjn2mbb6mih" path="res://scenes/enemy/enemy.tres" id="2_a3pup"]
+[ext_resource type="ArrayMesh" uid="uid://bbwiutmxxh6wa" path="res://assets/3d_models/knife/MadMurdererKnife.obj" id="3_40wdo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7xaro"]
 size = Vector3(2, 4, 2)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7xaro"]
-albedo_color = Color(1, 0.27999997, 0.27999997, 1)
-emission_enabled = true
-emission = Color(1, 0.08333331, 0, 1)
-
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_7xaro"]
-material = SubResource("StandardMaterial3D_7xaro")
+material = ExtResource("2_a3pup")
 radius = 1.0
 height = 4.0
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4a83h"]
-material = SubResource("StandardMaterial3D_7xaro")
+material = ExtResource("2_a3pup")
 radius = 0.25
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a3pup"]
@@ -26,6 +23,7 @@ size = Vector3(2, 2, 0.5)
 collision_layer = 2
 collision_mask = 7
 script = ExtResource("1_7k104")
+parry_time = 160
 
 [node name="EnemyHitbox" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_7xaro")
@@ -46,6 +44,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.75, 0)
 mesh = SubResource("CapsuleMesh_4a83h")
 skeleton = NodePath("../..")
 
+[node name="Knife" type="MeshInstance3D" parent="ArmPivot/RightArm"]
+transform = Transform3D(-0.9630033, 0.15203309, -0.22251052, 0.16916096, 0.98376393, -0.059942603, 0.2097846, -0.09536493, -0.9730862, -0.31649995, -1.590893, -0.7802507)
+mesh = ExtResource("3_40wdo")
+skeleton = NodePath("../..")
+
 [node name="AttackArea" type="Area3D" parent="ArmPivot"]
 collision_layer = 8
 
@@ -54,7 +57,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
 shape = SubResource("BoxShape3D_a3pup")
 
 [node name="AttackWarmup" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.2
+one_shot = true
+
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 0.25
 one_shot = true
 
 [connection signal="body_entered" from="ArmPivot/AttackArea" to="." method="_on_attack_area_body_entered"]

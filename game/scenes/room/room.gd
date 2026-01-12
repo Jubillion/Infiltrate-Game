@@ -6,7 +6,9 @@ extends Node3D
 var current_scene = load("res://scenes/room/room.tscn") as PackedScene
 
 func _ready() -> void:
-	pass
+	if safe_radius == 0:
+		if randf() < .1:
+			pass # Spawn heart here
 
 func _on_left_side_screen_entered() -> void:
 	var instance = current_scene.instantiate()

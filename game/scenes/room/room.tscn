@@ -1,8 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://c1tbwphbnygw3"]
+[gd_scene load_steps=15 format=3 uid="uid://c1tbwphbnygw3"]
 
 [ext_resource type="Script" uid="uid://deq1jwdfr0f8v" path="res://scenes/room/room.gd" id="1_8xru0"]
 [ext_resource type="Script" uid="uid://da83jq1t86j8q" path="res://scenes/room/enemy_spawner.gd" id="2_kxljb"]
 [ext_resource type="PackedScene" uid="uid://bg384254x4nmc" path="res://scenes/enemy/enemy.tscn" id="3_y1kpu"]
+[ext_resource type="PackedScene" uid="uid://bh4fok5r048uf" path="res://scenes/heart/heart.tscn" id="4_vaubn"]
+[ext_resource type="PackedScene" uid="uid://sfrach8hct0t" path="res://scenes/fast_enemy/fast_enemy.tscn" id="4_w7vtx"]
+[ext_resource type="PackedScene" uid="uid://bqo5v0b5fxtk7" path="res://scenes/strong_enemy/strong_enemy.tscn" id="5_w7vtx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v321d"]
 albedo_color = Color(0.066755004, 0.06675499, 0.06675501, 1)
@@ -42,7 +45,7 @@ point_count = 2
 
 [node name="Room" type="Node3D"]
 script = ExtResource("1_8xru0")
-enemy_chance = 1.0
+enemy_chance = 0.9
 
 [node name="Floor" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -110,6 +113,8 @@ aabb = AABB(-1, 0, -2.5, 2, 10, 5)
 curve = SubResource("Curve3D_8xru0")
 script = ExtResource("2_kxljb")
 enemy_scene = ExtResource("3_y1kpu")
+enemies_advanced = Array[PackedScene]([ExtResource("4_w7vtx"), ExtResource("5_w7vtx")])
+heart_scene = ExtResource("4_vaubn")
 
 [node name="EnemySpawnPoint" type="PathFollow3D" parent="EnemySpawner"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5, 2, 0)

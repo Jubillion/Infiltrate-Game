@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bh4fok5r048uf"]
+
+[ext_resource type="ArrayMesh" uid="uid://1xrr8i80fwuc" path="res://assets/3d_models/cheezburger/Cheezburger.obj" id="1_3t35b"]
+[ext_resource type="Script" uid="uid://b1qmai6s7b2m2" path="res://scenes/heart/heart.gd" id="2_jgyhw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jgyhw"]
+size = Vector3(1.3, 0.8, 1.3)
+
+[node name="Heart" type="Node3D"]
+script = ExtResource("2_jgyhw")
+
+[node name="AnimationTimer" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
+
+[node name="HeartArea" type="Area3D" parent="."]
+
+[node name="Hitbox" type="CollisionShape3D" parent="HeartArea"]
+shape = SubResource("BoxShape3D_jgyhw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, -0.3943203, 0)
+mesh = ExtResource("1_3t35b")
+
+[connection signal="body_entered" from="HeartArea" to="." method="_on_heart_area_body_entered"]

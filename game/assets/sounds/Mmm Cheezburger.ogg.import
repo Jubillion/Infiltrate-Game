@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://qq48jxaawyof"
+path="res://.godot/imported/Mmm Cheezburger.ogg-789126f0346e77ff12c4789efbe6ca01.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/Mmm Cheezburger.ogg"
+dest_files=["res://.godot/imported/Mmm Cheezburger.ogg-789126f0346e77ff12c4789efbe6ca01.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

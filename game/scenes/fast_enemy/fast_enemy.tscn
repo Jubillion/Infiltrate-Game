@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://sfrach8hct0t"]
+
+[ext_resource type="PackedScene" uid="uid://bg384254x4nmc" path="res://scenes/enemy/enemy.tscn" id="1_sqyu0"]
+[ext_resource type="Material" uid="uid://clmjn2mbb6mih" path="res://scenes/enemy/enemy.tres" id="2_271ao"]
+[ext_resource type="Texture2D" uid="uid://cr6gv3of4ak3r" path="res://assets/3d_models/dominus_set/DominusFrigidus.png" id="2_j32gf"]
+[ext_resource type="ArrayMesh" uid="uid://coe5nkrn70s3" path="res://assets/3d_models/dominus_set/dominusempyreus.obj" id="3_271ao"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_iv04a"]
+material = ExtResource("2_271ao")
+radius = 1.0
+height = 3.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iv04a"]
+albedo_texture = ExtResource("2_j32gf")
+
+[node name="FastEnemy" instance=ExtResource("1_sqyu0")]
+speed = 9.5
+
+[node name="Character" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = SubResource("CapsuleMesh_iv04a")
+
+[node name="Hood" type="MeshInstance3D" parent="Character" index="0"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0.14569807, -0.8)
+material_override = SubResource("StandardMaterial3D_iv04a")
+mesh = ExtResource("3_271ao")
+
+[node name="AttackCooldown" parent="." index="4"]
+wait_time = 0.15

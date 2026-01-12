@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://bwcronurghedr"]
+
+[ext_resource type="PackedScene" uid="uid://c1tbwphbnygw3" path="res://scenes/room/room.tscn" id="1_hujxm"]
+[ext_resource type="Script" uid="uid://cp2wyj08f0nnd" path="res://scenes/main/main.gd" id="1_yyfjg"]
+[ext_resource type="PackedScene" uid="uid://0pg7hnwun3w5" path="res://scenes/player/player.tscn" id="2_yyfjg"]
+[ext_resource type="Script" uid="uid://ddsuvtnkmeksf" path="res://scripts/camera_target.gd" id="3_b1x3f"]
+[ext_resource type="PackedScene" uid="uid://2nph28q85ntg" path="res://scenes/hud/hud.tscn" id="4_a8run"]
+[ext_resource type="AudioStream" uid="uid://bxmjniv7jpwfy" path="res://assets/sounds/swordlunge.wav" id="5_ouso4"]
+[ext_resource type="AudioStream" uid="uid://xlu5qamfo8bn" path="res://assets/sounds/splat.wav" id="6_blune"]
+[ext_resource type="AudioStream" uid="uid://qq48jxaawyof" path="res://assets/sounds/Mmm Cheezburger.ogg" id="7_th5th"]
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_yyfjg")
+
+[node name="Room" parent="." instance=ExtResource("1_hujxm")]
+safe_radius = 3
+
+[node name="Player" parent="." instance=ExtResource("2_yyfjg")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 2, 0)
+
+[node name="CameraTarget" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+script = ExtResource("3_b1x3f")
+look_ahead = 5.0
+
+[node name="Camera" type="Camera3D" parent="CameraTarget"]
+transform = Transform3D(1, 0, 0, 0, 0.90839875, 0.4181049, 0, -0.4181049, 0.90839875, 0, 3.6864014, 1)
+projection = 1
+size = 9.622147
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0, 7, 5)
+layers = 2
+light_energy = 0.25
+light_cull_mask = 4293918722
+sky_mode = 1
+
+[node name="HUD" parent="." instance=ExtResource("4_a8run")]
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="ParrySuccess" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("5_ouso4")
+volume_db = -9.0
+
+[node name="ParryFail" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("6_blune")
+volume_db = -9.0
+
+[node name="HeartSound" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("7_th5th")
+volume_db = -6.0

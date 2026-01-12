@@ -18,7 +18,7 @@ radius = 1.0
 height = 4.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lvxji"]
-size = Vector3(1.5, 4, 1)
+size = Vector3(1.5, 4, 1.5)
 
 [node name="Player" type="CharacterBody3D"]
 collision_mask = 6
@@ -33,7 +33,7 @@ mesh = SubResource("CapsuleMesh_8afob")
 [node name="WeaponArea" type="Area3D" parent="."]
 
 [node name="WeaponHitbox" type="CollisionShape3D" parent="WeaponArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 shape = SubResource("BoxShape3D_lvxji")
 
 [node name="WeaponPivot" type="Marker3D" parent="."]
@@ -45,5 +45,7 @@ layers = 2
 mesh = ExtResource("3_gmlin")
 
 [node name="ParryCooldown" type="Timer" parent="."]
-wait_time = 0.001
 one_shot = true
+
+[connection signal="body_entered" from="WeaponArea" to="." method="_on_weapon_area_body_entered"]
+[connection signal="body_exited" from="WeaponArea" to="." method="_on_weapon_area_body_exited"]
