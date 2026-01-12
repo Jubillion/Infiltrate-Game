@@ -44,6 +44,6 @@ The game's Jan 10 version can be [played here](https://Jubillion.gihub.io/Infilt
 
 This is my final day of working on the game. I added lots of finishing touches, including more sounds, and added different enemy types. I also added a title screen, which doubles as a death screen since I was too lazy to make a death screen.
 
-The game's final version is playaable at [the final demo site](https://Jubillion.gihub.io/Infiltrate-Game/), which redirects to the game's specific version. Below is a screenshot of the title screen.
+The game's final version is playable at [the final demo site](https://Jubillion.gihub.io/Infiltrate-Game/), which redirects to the game's specific version. Below is a screenshot of the title screen.
 
 ![Title screen for Infiltrate](./journal_assets/title_screen.png)
