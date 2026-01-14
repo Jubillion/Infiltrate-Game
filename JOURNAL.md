@@ -47,3 +47,15 @@ This is my final day of working on the game. I added lots of finishing touches, 
 The game's final version is playable at [the final demo site](https://Jubillion.gihub.io/Infiltrate-Game/), which redirects to the game's specific version. Below is a screenshot of the title screen.
 
 ![Title screen for Infiltrate](./journal_assets/title_screen.png)
+
+## Week 2 - The Controller
+
+In week 2, I created a controller that would be used to play the game on the console.
+
+### Jan 12, 2026
+
+I took a break today from week 1 and decided to focus on school and on a different personal project. Jan 12th was the first day of the new semester at my school, so I had new classes to adjust to.
+
+### Jan 13, 2026
+
+Today, I installed KiCad. I tried setting up the project, which took me about two hours since the program kept crashed and it took me a few tries to get the library set up.
