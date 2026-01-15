@@ -58,4 +58,12 @@ I took a break today from week 1 and decided to focus on school and on a differe
 
 ### Jan 13, 2026
 
-Today, I installed KiCad. I tried setting up the project, which took me about two hours since the program kept crashed and it took me a few tries to get the library set up.
+I installed KiCad. I tried setting up the project, which took me about an hour and a half since the program kept crashed and it took me a few tries to get the library set up.
+
+### Jan 14, 2026
+
+I finished the PCB for the Hackpad tutorial and created a keyboard-style layout for the controller. This took me about two hours. I will scrap the tutorial PCB and make my own soon. I also added all of the KiCad backups to my gitingore so they don't take up so much space.
+
+![A schematic of a PCB with 2 LEDs, a microcontroller, and four keyboard keys](./journal_assets/hackpad_schematic.png)
+![A diagram of a macropad PCB with four keys, an LED, and a microcontroller in the front](./journal_assets/hackpad_pcb.png)
+![A keyboard layout with a giant A "parry" key, a B key, a small escape key, and a left/right key pair](./journal_assets/controller_layout.png)
